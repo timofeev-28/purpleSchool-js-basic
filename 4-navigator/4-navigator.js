@@ -1,7 +1,7 @@
-let addressLat = 3;
-let addressLong = 3;
-let positionLat = 0;
-let positionLong = 0;
+const addressLat = 3;
+const addressLong = 3;
+const positionLat = 0;
+const positionLong = 0;
 
 // Принимаем, что значения координат только положительные;
 const sideA = Math.max(addressLat, positionLat) - Math.min(addressLat, positionLat);
