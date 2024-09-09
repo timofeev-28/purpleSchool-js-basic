@@ -1,6 +1,6 @@
 const lang = prompt('Выберите язык пользователя из перечня: RU, EN, DE, FI, SWE, FRA');
 
-switch(lang) {
+switch(lang.toUpperCase()) {
     case ('RU'):
         console.log('Добрый день!');
         break;
