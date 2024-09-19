@@ -1,24 +1,25 @@
-const arr = [1, 40, -5, 10, 0, -17, 22, 0, 11, -5];
-const increment = true; // по возрастанию (false - по убыванию)
+const numbers = Array.from({ length: 25 }, () => {
+    const min = -100;
+    const max = 100;
+    const randomNumber = Math.ceil(Math.random() * (max - min) + min);
+    return randomNumber;
+});
 
-function compareValues(increment, a, b) {
-    if (increment) {
-        return a > b;
-    }
-    return a < b;
-}
+const sortArray = (incomingArray, increase = true) => {
+    const array = [...incomingArray];
 
-function sortElements(arr, increment) {
-    for (let i = 0; i < arr.length; i++) {
-        for (let j = i + 1; j < arr.length; j++) {
-            if (compareValues(increment, arr[i], arr[j])) {
-                let el = arr[i];
-                arr[i] = arr[j];
-                arr[j] = el;
+    for (let i = 0; i < array.length; i++) {
+        for (let j = i + 1; j < array.length; j++) {
+            const isExchange = increase ? array[i] > array[j] : array[i] < array[j];
+            if (isExchange) {
+                [array[j], array[i]] = [array[i], array[j]];
             }
         }
     }
-    return arr;
+
+    return array;
 }
 
-console.log(sortElements(arr, increment));
+console.log(numbers);
+console.log('Отсортированный по возрастанию массив:', sortArray(numbers));
+console.log('Отсортированный по убыванию массив:', sortArray(numbers, false));
