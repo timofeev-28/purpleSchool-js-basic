@@ -19,13 +19,22 @@ const checkElement = (arr) => {
     }
 }
 
+const checkDate = (date) => {
+    if (date.includes('/')) {
+        date = date.replaceAll('/', '.');
+    }
+    if (date.includes('-')) {
+        date = date.replaceAll('-', '.');
+    }
+
+    return date.split('.')
+}
+
 // По дням выполнено условие не более 31 в месяце, и учтены отличия для февраля (28 или 29);
 const filterDates = (array, checkEl) => {
     return array
-        .map(e => [...[e.split('-')], ...[e.split('.')], ...[e.split('/')]])
-        .flat(1)
-        .filter(e => e.length === 3)
-        .filter(e => checkEl(e))
+        .map(e => checkDate(e))
+        .filter(e => e.length === 3 && checkEl(e))
         .map(e => e.join('.'));
 }
 
