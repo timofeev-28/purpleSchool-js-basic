@@ -1,26 +1,20 @@
-const isCorrectNumber = (num) => {
-    num = num.replaceAll('-', '');
-    for (let el of num) {
-        if (isNaN(el)) {
-            console.log('Проверьте правильность ввода номера карты');
-            return null;
-        }
+const isCorrectNumber = (card) => {
+    const cardNumber = card
+        .replaceAll('-', '')
+        .split('')
+        .map(Number);
+
+    if (cardNumber.includes(NaN)) {
+        console.log('Что-то с номером карты не так');
+        return NaN;
     }
 
-    let numCard = [];
-    for (let el of num) {
-        numCard.push(Number(el));
+    for (let i = 0; i < cardNumber.length; i += 2) {
+        cardNumber[i] = (cardNumber[i] * 2 <= 9) ? cardNumber[i] * 2 : cardNumber[i] * 2 - 9;
     }
 
-    let sum = 0;
-    numCard.map((el, i) => {
-        if (i % 2 === 0) {
-            sum += (el * 2 <= 9) ? el * 2 : el * 2 - 9;
-        } else {
-            sum += el;
-        }
-    })
-    return sum % 10 === 0 ? true : false;
+    let sum = cardNumber.reduce((acc, e) => acc + e);
+    return sum % 10 === 0;
 }
 
 const card1 = '4561-1213-4367-261p';

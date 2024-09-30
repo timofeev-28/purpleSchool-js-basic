@@ -1,4 +1,5 @@
-const data = ['29/02/24', '30/02/24', '23-09-23', '29/09/02', '41-12', '32/06/24', 'введите дату', '24.08.21', '31.16', '10.13.24', '33/33/00', 'date', '6'];
+const data = ['29/02/24', '30/02/24', '29.02.24', '30.02.24', '23-09-23', '29.09.02', '41-12', '32-06-24', 'введите дату', '24.08.21', '31.16', '10.13.24', '33/33/00','date-date-date', 'date', '6'];
+// если дата пришла через /, то это формат мм/дд/год, и валидные значения всё-равно нужно переворачивать
 
 const checkElement = (arr) => {
     let day = Number(arr[0]);
@@ -20,21 +21,26 @@ const checkElement = (arr) => {
 }
 
 const checkDate = (date) => {
-    if (date.includes('/')) {
-        date = date.replaceAll('/', '.');
-    }
-    if (date.includes('-')) {
-        date = date.replaceAll('-', '.');
-    }
+    let day, month, year;
 
-    return date.split('.')
+    if (date.includes('/')) {
+        [month, day, year] = date.split('/');
+    } else if (date.includes('-')) {
+        [day,month, year] = date.split('-');
+    } else if (date.includes('.')) {
+        [day,month, year] = date.split('.');
+    }
+    if (!year || isNaN(day) || isNaN(month) || isNaN(year)) {
+        return null;
+    }
+    return [day, month, year];
 }
 
 // По дням выполнено условие не более 31 в месяце, и учтены отличия для февраля (28 или 29);
 const filterDates = (array, checkEl) => {
     return array
         .map(e => checkDate(e))
-        .filter(e => e.length === 3 && checkEl(e))
+        .filter(e => e && e.length === 3 && checkEl(e))
         .map(e => e.join('.'));
 }
 
