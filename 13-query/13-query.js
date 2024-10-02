@@ -12,3 +12,9 @@ const getQueryString1 = (data) => {
 };
 
 console.log(getQueryString1({search: "Вася", take: 10}));
+
+// В одну строку ===============================
+
+const queryFn = (params) => Object.entries(params).map(x => x.join('=')).join('&');
+
+console.log(queryFn({search: "Вася", take: 10}));
