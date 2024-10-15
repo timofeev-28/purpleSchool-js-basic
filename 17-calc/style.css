@@ -1,0 +1,43 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Comfortaa', cursive;
+	margin: 0;
+	background-color: #bdeed6;
+	font-weight: 400;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-inline: auto;
+    max-width: 900px;
+}
+
+.inputs-wrap,
+.btns-wrap {
+    margin-bottom: 20px;
+}
+
+.input {
+    height: 50px;
+    font-size: 18px;
+}
+
+.btn {
+    min-width: 60px;
+    min-height: 30px;
+    font-size: 18px;
+}
+
+.res {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    min-height: 50px;
+    background-color: azure;
+}
