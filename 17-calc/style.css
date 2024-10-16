@@ -31,6 +31,17 @@ body {
     min-width: 60px;
     min-height: 30px;
     font-size: 18px;
+    border: none;
+}
+
+.btn.btn-active {
+    background: #396586;
+    color: white;
+    border-color: #295a77;
+}
+
+.btn-res {
+    margin-bottom: 15px;
 }
 
 .res {
@@ -40,4 +51,11 @@ body {
     width: 30%;
     min-height: 50px;
     background-color: azure;
+    border: 1px solid #295a77;
+}
+
+.error {
+    color: red;
+    font-size: 18px;
+    border-color: red;
 }
