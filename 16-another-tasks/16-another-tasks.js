@@ -25,13 +25,13 @@ const toDoListObj = {
     },
 
     updateTask(id, title, priority) {
-        if (!this.checkEl(id)) {
+        const task = this.checkEl(id);
+        if (!task) {
             return null;
         }
 
-        let index = this.tasks.findIndex(e => e.id === id);
-        this.tasks[index].title = title;
-        this.tasks[index].priority = priority;
+        task.title = title;
+        task.priority = priority;
     },
 
     sortTask(data) {
@@ -43,10 +43,10 @@ const toDoListObj = {
 
     // новый метод для добавления описания по id
     addDescr(id, descr) {
-        if (!this.checkEl(id)) {
-        return null;
+        const task = this.checkEl(id);
+        if (!task) {
+            return null;
         }
-        let task = this.tasks.find(e => e.id === id);
         task.description = descr;
     },
 };
